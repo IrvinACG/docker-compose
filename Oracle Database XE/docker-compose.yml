@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  oracledb_xe:
+    image: container-registry.oracle.com/database/express:21.3.0-xe
+    restart: always
+    container_name: oracle_db_xe
+    environment:
+      - ORACLE_PWD=mipass
+    ports:
+      - 1521:1521
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    networks:
+      - net_oracle
+
+volumes:
+  oracle-data: {}
+
+networks:
+  net_oracle:
+    driver: bridge
